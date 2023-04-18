@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}トップページ{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    こんにちは！！！<br />
+    <ul>
+    {% if g.user %}
+      <li><a href="{{ url_for('profile.index') }}">プロフィールを見る</a></li>
+      <li><a href="{{ url_for('users.index') }}">ユーザー一覧</a></li>
+      <li><a href="{{ url_for('auth.logout') }}">ログアウト</a></li>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">ユーザー登録</a></li>
+      <li><a href="{{ url_for('auth.login') }}">ログイン</a></li>
+    {% endif %}
+    </ul>
+{% endblock %}

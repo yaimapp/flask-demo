@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}プロフィール編集{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label>メールアドレス</label>
+    <div>{{ g.user.email }}</div>
+    <label for="profile">プロフィール</label>
+    <textarea name="profile" id="profile">{{ request.form['profile'] or user.profile or '' }}</textarea>
+    <input type="submit" value="保存">
+  </form>
+{% endblock %}

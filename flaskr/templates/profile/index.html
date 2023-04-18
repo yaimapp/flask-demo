@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}プロフィール{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <label>メールアドレス</label>
+  <div>{{ user['email'] }}</div>
+  <label>プロフィール</label>
+  <div>{{ user['profile'] or '' }}</div>
+  <div><a href="/profile/update">プロフィールを編集する</a></div>
+  <div><a href="/">トップに戻る</a></div>
+{% endblock %}
