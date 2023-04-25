@@ -5,6 +5,15 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
+### ChatGPTを使うためのライブラリ
+from langchain.chains import ConversationChain
+from langchain.memory import ConversationBufferMemory
+from langchain.chat_models import ChatOpenAI
+from langchain.prompts import (
+    ChatPromptTemplate, 
+    MessagesPlaceholder, 
+    HumanMessagePromptTemplate
+)
 
 from flaskr.models import User
 
@@ -25,7 +34,14 @@ def register():
         
         if error is None:
             try:
-                user = User(email, generate_password_hash(password))
+                #プロンプト
+                prompt = ChatPromptTemplate.from_messages([
+                    MessagesPlaceholder(variable_name="history"),
+                    HumanMessagePromptTemplate.from_template("{input}")
+                ])
+                chain = ConversationChain(llm=ChatOpenAI(), prompt=prompt, memory=ConversationBufferMemory(return_messages=True))
+                profile = chain.run("新規ユーザーのプロフィールをランダムに生成してください。100文字以内で。1件。主語はそのユーザーになるように")
+                user = User(email, generate_password_hash(password), profile)
                 db.session.add(user)
                 db.session.commit()
             except:
