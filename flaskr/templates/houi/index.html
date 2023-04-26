@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block head %}
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+{% endblock %}
+{% block header %}
+  <h1>{% block title %}九星方位{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="star">本命星</label>
+    <select name="star" id="star" required>
+      <option value="1">一白水星</option>
+      <option value="2">二黒土星</option>
+      <option value="3">三碧木星</option>
+      <option value="4">四緑木星</option>
+      <option value="5">五黄土星</option>
+      <option value="6">六白金星</option>
+      <option value="7">七赤金星</option>
+      <option value="8">八白土星</option>
+      <option value="9">九紫火星</option>
+    </select>
+    <label for="ymd">日付</label>
+    <input type="text" name="ymd" id="ymd" class="datepicker" required>
+    <input type="submit" value="表示する">
+  </form>
+  <script>
+    $('#ymd').datepicker({
+      dateFormat: "yy/mm/dd"
+    });
+  </script>
+  <pre>{{ result }}</pre>
+{% endblock %}

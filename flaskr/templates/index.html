@@ -8,6 +8,7 @@
     こんにちは！！！<br />
     <ul>
     {% if g.user %}
+      <li><a href="{{ url_for('houi.index') }}">九星方位</a></li>
       <li><a href="{{ url_for('profile.index') }}">プロフィールを見る</a></li>
       <li><a href="{{ url_for('users.index') }}">ユーザー一覧</a></li>
       <li><a href="{{ url_for('auth.logout') }}">ログアウト</a></li>

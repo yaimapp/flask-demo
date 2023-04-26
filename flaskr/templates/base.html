@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <title>{% block title %}{% endblock %} - Flaskアプリ</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% block head %}{% endblock %}
 <nav>
   <h1>Flaskアプリ</h1>
   <ul>

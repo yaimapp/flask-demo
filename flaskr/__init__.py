@@ -27,4 +27,7 @@ def create_app(test_config=None):
     app.register_blueprint(users.bp)
     app.add_url_rule('/', endpoint='index')
 
+    from . import houi
+    app.register_blueprint(houi.bp)
+
     return app
